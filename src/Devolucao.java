@@ -7,6 +7,11 @@ public class Devolucao {
     private Livro livro;
     private String data;
     
+    public Devolucao(Vizinho vizinho, Livro livro, String data) {
+        setVizinho(vizinho);
+        setLivro(livro);
+        setData(data);
+    }
     public Devolucao(Vizinho vizinho, Livro livro) {
         setVizinho(vizinho);
         setLivro(livro);
@@ -27,6 +32,9 @@ public class Devolucao {
     }
     public String getData() {
         return this.data;
+    }
+    public void setData(String data) {
+        this.data = data;
     }
 
     @Override
