@@ -22,6 +22,8 @@ public class Menu {
         System.out.println("5 - Listar Autores");
         System.out.println("6 - Listar Vizinhos");
 
+        System.out.println("7 - Listar Empréstimos");
+
         System.out.println("0 - Sair");
         System.out.print("\n$ Digite a opção: ");
 
@@ -45,7 +47,10 @@ public class Menu {
                 showListaAutores();
                 break;
             case 6:
-                //showListaVizinhos();
+                showListaVizinhos();
+                break;
+            case 7:
+                showListaEmprestimos();
                 break;
             case 0:
                 System.out.println("\nVolte logo!");
@@ -125,6 +130,22 @@ public class Menu {
         System.out.println("--------------------------");
         System.out.println("LISTA DE AUTORES");
         Database.getInstance().listarAutores();
+        System.out.println("\nFim!");
+        showMenu();
+    }
+
+    public void showListaVizinhos() {
+        System.out.println("--------------------------");
+        System.out.println("LISTA DE VIZINHOS");
+        Database.getInstance().listarVizinhos();
+        System.out.println("\nFim!");
+        showMenu();
+    }
+
+    public void showListaEmprestimos() {
+        System.out.println("--------------------------");
+        System.out.println("LISTA DE EMPRESTIMOS");
+        Database.getInstance().listarEmprestimos();
         System.out.println("\nFim!");
         showMenu();
     }
