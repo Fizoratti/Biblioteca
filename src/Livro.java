@@ -11,6 +11,7 @@ public class Livro {
         anoPublicacao = ano;
     }
 
+    // Get&Set
     public int getCodigo() {
         return this.codigo;
     }
@@ -36,4 +37,12 @@ public class Livro {
         this.autor = autor;
     }
 
+    @Override
+    public String toString() {
+        String livro = "(Número): " + this.codigo + 
+                    "\n (Título): " + this.titulo +
+                    "\n (Ano) : " + this.anoPublicacao +
+                    "\n (Autor) " + this.autor;
+        return livro;
+    }
 }
