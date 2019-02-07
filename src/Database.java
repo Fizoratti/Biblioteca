@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.charset.Charset;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Database {
     private ArrayList<Livro> livros;
@@ -294,6 +295,23 @@ public class Database {
         for(Doacao d: doacoes) {
             System.out.println();
             System.out.println(d.toString());
+        }
+    }
+
+    // Registrar dados
+    public void registrarEmprestimo(Emprestimo emprestimo) {
+        emprestimos.add(emprestimo);
+        Path path = Paths.get("Emprestimos.txt");
+        try(PrintWriter writer = new PrintWriter(
+            Files.newBufferedWriter(path, Charset.defaultCharset()))) {
+            writer.println("Vizinho;Livro;Data");
+            for(Emprestimo e: emprestimos) {
+                writer.println(e.getVizinho().getCodigo() + ";" +
+                                e.getLivro().getCodigo() + ";" +
+                                e.getData());
+            }
+        } catch (IOException e) {
+            System.err.format("Erro de E/S: %S%n", e);
         }
     }
 }
