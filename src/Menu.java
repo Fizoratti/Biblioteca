@@ -253,12 +253,43 @@ public class Menu {
         System.out.println("--------------------------");
         System.out.println("LISTA DE VIZINHOS");
         Database.getInstance().listarVizinhos();
-        System.out.println("\nFim!");
+        System.out.println("\nFim!\n");
         // Wait 2 seconds;
         try{ 
             Thread.sleep(2000); 
         } catch(Exception e) {
             Thread.currentThread().interrupt();
+        }
+        System.out.println("1 - Sim");
+        System.out.println("0 - Não");
+        System.out.print("$ Deseja adicionar um novo vizinho?: ");
+        Scanner ler = new Scanner(System.in);
+        switch(Integer.parseInt(ler.nextLine())) {
+            case 1:
+                int codigo = Database.getInstance().getVizinhos().size()+1;
+                System.out.print("$ Insira o nome do vizinho: ");
+                String nome = ler.nextLine();
+                Vizinho vizinho = new Vizinho(codigo, nome);
+                System.out.println(vizinho.toString());
+                System.out.println("1 - Sim");
+                System.out.println("0 - Não");
+                System.out.print("$ Confirma?: ");
+                switch(Integer.parseInt(ler.nextLine())) {
+                    case 1:
+                        Database.getInstance().getVizinhos().add(vizinho);
+                        System.out.println("\nNovo vizinho adicionado!\n");
+                        // Wait 2 seconds;
+                        try{ 
+                            Thread.sleep(2000); 
+                        } catch(Exception e) {
+                            Thread.currentThread().interrupt();
+                        }
+                        break;
+                    case 0:
+                        break;
+                }
+            case 0:
+                break;
         }
         showMenu();
     }
