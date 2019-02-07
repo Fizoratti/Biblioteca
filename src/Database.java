@@ -170,6 +170,7 @@ public class Database {
                 // Dados do empréstimo
                 int codigoVizinho = Integer.parseInt(sc.next());
                 int codigoLivro = Integer.parseInt(sc.next());
+                String data = sc.next();
 
                 // Procura o vizinho com o mesmo codigo lido
                 for(Vizinho v: vizinhos) {
@@ -178,7 +179,7 @@ public class Database {
                         for(Livro l: livros) {
                             if(l.getCodigo() == codigoLivro) {
                                 // Cria o objeto empréstimo e adiciona na lista
-                                emprestimos.add(new Emprestimo(v,l));
+                                emprestimos.add(new Emprestimo(v,l,data));
                             }
                         }
                     }
@@ -200,6 +201,7 @@ public class Database {
                 // Dados do empréstimo
                 int codigoVizinho = Integer.parseInt(sc.next());
                 int codigoLivro = Integer.parseInt(sc.next());
+                String data = sc.next();
 
                 // Procura o vizinho com o mesmo codigo lido
                 for(Vizinho v: vizinhos) {
@@ -208,7 +210,7 @@ public class Database {
                         for(Livro l: livros) {
                             if(l.getCodigo() == codigoLivro) {
                                 // Cria o objeto empréstimo e adiciona na lista
-                                devolucoes.add(new Devolucao(v,l));
+                                devolucoes.add(new Devolucao(v,l,data));
                             }
                         }
                     }
@@ -230,6 +232,7 @@ public class Database {
                 // Dados do empréstimo
                 int codigoVizinho = Integer.parseInt(sc.next());
                 int codigoLivro = Integer.parseInt(sc.next());
+                String data = sc.next();
 
                 // Procura o vizinho com o mesmo codigo lido
                 for(Vizinho v: vizinhos) {
@@ -238,7 +241,7 @@ public class Database {
                         for(Livro l: livros) {
                             if(l.getCodigo() == codigoLivro) {
                                 // Cria o objeto empréstimo e adiciona na lista
-                                doacoes.add(new Doacao(v,l));
+                                doacoes.add(new Doacao(v,l,data));
                             }
                         }
                     }
