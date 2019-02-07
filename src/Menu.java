@@ -42,7 +42,7 @@ public class Menu {
                 showListaLivros();
                 break;
             case 5:
-                //showListaAutores();
+                showListaAutores();
                 break;
             case 6:
                 //showListaVizinhos();
@@ -117,6 +117,14 @@ public class Menu {
         System.out.println("--------------------------");
         System.out.println("LISTA DE LIVROS");
         Database.getInstance().listarLivros();
+        System.out.println("\nFim!");
+        showMenu();
+    }
+
+    public void showListaAutores() {
+        System.out.println("--------------------------");
+        System.out.println("LISTA DE AUTORES");
+        Database.getInstance().listarAutores();
         System.out.println("\nFim!");
         showMenu();
     }
