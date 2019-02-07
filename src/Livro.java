@@ -41,8 +41,9 @@ public class Livro {
     public String toString() {
         String livro = "(Número): " + this.codigo + 
                     "\n (Título): " + this.titulo +
-                    "\n (Ano) : " + this.anoPublicacao +
-                    "\n (Autor) " + this.autor.getNome();
+                    "\n (Ano) : " + this.anoPublicacao;
+        if(autor != null) livro.concat("\n (Autor) " + this.autor.getNome());
+        
         return livro;
     }
 }
