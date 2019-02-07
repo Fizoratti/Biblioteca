@@ -158,29 +158,28 @@ public class Database {
     public void carregarEmprestimos() {
         Path path = Paths.get("Emprestimos.txt");
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
-        String linha = br.readLine();
-        while ((linha = br.readLine()) != null) {
-            // separador: ;
-            Scanner sc = new Scanner(linha).useDelimiter(";");
+            String linha = br.readLine();
+            while ((linha = br.readLine()) != null) {
+                // separador: ;
+                Scanner sc = new Scanner(linha).useDelimiter(";");
 
-            // Dados do empréstimo
-            int codigoVizinho = Integer.parseInt(sc.next());
-            int codigoLivro = Integer.parseInt(sc.next());
+                // Dados do empréstimo
+                int codigoVizinho = Integer.parseInt(sc.next());
+                int codigoLivro = Integer.parseInt(sc.next());
 
-            // Procura o vizinho com o mesmo codigo lido
-            for(Vizinho v: vizinhos) {
-                if(v.getCodigo() == codigoVizinho) {
-                    // Procura o livro com o codigo lido
-                    for(Livro l: livros) {
-                        if(l.getCodigo() == codigoLivro) {
-                            // Cria o objeto empréstimo e adiciona na lista
-                            emprestimos.add(new Emprestimo(v,l));
+                // Procura o vizinho com o mesmo codigo lido
+                for(Vizinho v: vizinhos) {
+                    if(v.getCodigo() == codigoVizinho) {
+                        // Procura o livro com o codigo lido
+                        for(Livro l: livros) {
+                            if(l.getCodigo() == codigoLivro) {
+                                // Cria o objeto empréstimo e adiciona na lista
+                                emprestimos.add(new Emprestimo(v,l));
+                            }
                         }
                     }
                 }
             }
-            
-        }
         } catch (IOException e) {
             System.err.format("Erro de E/S: %s%n", e);
         }
@@ -189,29 +188,28 @@ public class Database {
     public void carregarDevolucoes() {
         Path path = Paths.get("Devolucoes.txt");
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
-        String linha = br.readLine();
-        while ((linha = br.readLine()) != null) {
-            // separador: ;
-            Scanner sc = new Scanner(linha).useDelimiter(";");
+            String linha = br.readLine();
+            while ((linha = br.readLine()) != null) {
+                // separador: ;
+                Scanner sc = new Scanner(linha).useDelimiter(";");
 
-            // Dados do empréstimo
-            int codigoVizinho = Integer.parseInt(sc.next());
-            int codigoLivro = Integer.parseInt(sc.next());
+                // Dados do empréstimo
+                int codigoVizinho = Integer.parseInt(sc.next());
+                int codigoLivro = Integer.parseInt(sc.next());
 
-            // Procura o vizinho com o mesmo codigo lido
-            for(Vizinho v: vizinhos) {
-                if(v.getCodigo() == codigoVizinho) {
-                    // Procura o livro com o codigo lido
-                    for(Livro l: livros) {
-                        if(l.getCodigo() == codigoLivro) {
-                            // Cria o objeto empréstimo e adiciona na lista
-                            devolucoes.add(new Devolucao(v,l));
+                // Procura o vizinho com o mesmo codigo lido
+                for(Vizinho v: vizinhos) {
+                    if(v.getCodigo() == codigoVizinho) {
+                        // Procura o livro com o codigo lido
+                        for(Livro l: livros) {
+                            if(l.getCodigo() == codigoLivro) {
+                                // Cria o objeto empréstimo e adiciona na lista
+                                devolucoes.add(new Devolucao(v,l));
+                            }
                         }
                     }
                 }
             }
-            
-        }
         } catch (IOException e) {
             System.err.format("Erro de E/S: %s%n", e);
         }
