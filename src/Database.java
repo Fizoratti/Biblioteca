@@ -107,16 +107,16 @@ public class Database {
     }
 
     public void listarAutores() {
-        for(Livro l: livros) {
+        for(Autor a: autores) {
             System.out.println();
-            System.out.println(l.toString());
+            System.out.println(a.toString());
         }
     }
 
     public void listarVizinhos() {
-        for(Livro l: livros) {
+        for(Vizinho v: vizinhos) {
             System.out.println();
-            System.out.println(l.toString());
+            System.out.println(v.toString());
         }
     }
 
