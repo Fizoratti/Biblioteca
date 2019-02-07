@@ -15,8 +15,13 @@ public class Database {
     private static Database INSTANCE = new Database();
 
     private Database() {
-        //carregarLivros();
+        livros = new ArrayList<>();
+        autores = new ArrayList<>();
+        vizinhos = new ArrayList<>();
+
+        carregarLivros();
         carregarPessoas();
+        //carregarVizinhos();
     }
 
     public static Database getInstance() {
@@ -27,7 +32,23 @@ public class Database {
     }
 
     public void carregarLivros() {
+        Path path = Paths.get("Livros.txt");
+        try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
+        String linha = null;
+        while ((linha = br.readLine()) != null) {
+            // separador: ;
+            Scanner sc = new Scanner(linha).useDelimiter(";");
 
+            // Atributos do Livro
+            int codigo = Integer.parseInt(sc.next());
+            String titulo = sc.next();
+            int ano = Integer.parseInt(sc.next());
+            // Cria uma instancia do Livro e adiciona na lista
+            livros.add(new Livro(codigo, titulo, ano));
+        }
+        } catch (IOException e) {
+            System.err.format("Erro de E/S: %s%n", e);
+        }
     }
 
     public void carregarPessoas() {
@@ -37,8 +58,12 @@ public class Database {
         while ((linha = br.readLine()) != null) {
             // separador: ;
             Scanner sc = new Scanner(linha).useDelimiter(";");
-            System.out.println(sc.next()+"; "+sc.next()+"; ");
 
+            // Atributos do Autor
+            int codigo = Integer.parseInt(sc.next());
+            String nome = sc.next();
+            // Cria o objeto Autor e adiciona na lista
+            autores.add(new Autor(codigo, nome));
         }
         } catch (IOException e) {
             System.err.format("Erro de E/S: %s%n", e);
