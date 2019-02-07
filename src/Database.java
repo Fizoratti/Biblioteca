@@ -187,7 +187,7 @@ public class Database {
     }
 
     public void carregarDevolucoes() {
-        Path path = Paths.get("Emprestimos.txt");
+        Path path = Paths.get("Devolucoes.txt");
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
         String linha = br.readLine();
         while ((linha = br.readLine()) != null) {
