@@ -42,7 +42,7 @@ public class Livro {
         String livro = "(Número): " + this.codigo + 
                     "\n (Título): " + this.titulo +
                     "\n (Ano) : " + this.anoPublicacao +
-                    "\n (Autor) " + this.autor;
+                    "\n (Autor) " + this.autor.getNome();
         return livro;
     }
 }
