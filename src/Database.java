@@ -57,7 +57,7 @@ public class Database {
     public void carregarLivros() {
         Path path = Paths.get("Livros.txt");
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
-        String linha = null;
+        String linha = br.readLine();
         while ((linha = br.readLine()) != null) {
             // separador: ;
             Scanner sc = new Scanner(linha).useDelimiter(";");
@@ -78,7 +78,7 @@ public class Database {
     public void carregarAutores() {
         Path path = Paths.get("Autores.txt");
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
-        String linha = null;
+        String linha = br.readLine();
         while ((linha = br.readLine()) != null) {
             // separador: ;
             Scanner sc = new Scanner(linha).useDelimiter(";");
@@ -98,7 +98,7 @@ public class Database {
     public void carregarVizinhos() {
         Path path = Paths.get("Vizinhos.txt");
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
-        String linha = null;
+        String linha = br.readLine();
         while ((linha = br.readLine()) != null) {
             // separador: ;
             Scanner sc = new Scanner(linha).useDelimiter(";");
@@ -121,7 +121,7 @@ public class Database {
     public void carregarLivrosAutores() {
         Path path = Paths.get("Livros_Autores.txt");
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
-        String linha = null;
+        String linha = br.readLine();
         while ((linha = br.readLine()) != null) {
             // separador: ;
             Scanner sc = new Scanner(linha).useDelimiter(";");
@@ -153,7 +153,7 @@ public class Database {
     public void carregarEmprestimos() {
         Path path = Paths.get("Emprestimos.txt");
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
-        String linha = null;
+        String linha = br.readLine();
         while ((linha = br.readLine()) != null) {
             // separador: ;
             Scanner sc = new Scanner(linha).useDelimiter(";");
