@@ -13,6 +13,7 @@ public class Database {
     private ArrayList<Vizinho> vizinhos;
 
     private ArrayList<Emprestimo> emprestimos;
+    private ArrayList<Devolucao> devolucoes;
 
     private static Database INSTANCE = new Database();
 
@@ -22,6 +23,7 @@ public class Database {
         vizinhos = new ArrayList<>();
 
         emprestimos = new ArrayList<>();
+        devolucoes = new ArrayList<>();
 
         carregarLivros();
         carregarAutores();
@@ -29,7 +31,7 @@ public class Database {
 
         carregarLivrosAutores();
         carregarEmprestimos();
-        // carregarDevolucoes();
+        carregarDevolucoes();
         // carregarDoacoes();
     }
 
@@ -51,6 +53,9 @@ public class Database {
     }
     public ArrayList<Emprestimo> getEmprestimos() {
         return this.emprestimos;
+    }
+    public ArrayList<Devolucao> getDevolucoes() {
+        return this.devolucoes;
     }
 
     // Métodos para carregar os dados principais
@@ -181,6 +186,38 @@ public class Database {
         }
     }
 
+    public void carregarDevolucoes() {
+        Path path = Paths.get("Emprestimos.txt");
+        try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
+        String linha = br.readLine();
+        while ((linha = br.readLine()) != null) {
+            // separador: ;
+            Scanner sc = new Scanner(linha).useDelimiter(";");
+
+            // Dados do empréstimo
+            int codigoVizinho = Integer.parseInt(sc.next());
+            int codigoLivro = Integer.parseInt(sc.next());
+
+            // Procura o vizinho com o mesmo codigo lido
+            for(Vizinho v: vizinhos) {
+                if(v.getCodigo() == codigoVizinho) {
+                    // Procura o livro com o codigo lido
+                    for(Livro l: livros) {
+                        if(l.getCodigo() == codigoLivro) {
+                            // Cria o objeto empréstimo e adiciona na lista
+                            devolucoes.add(new Devolucao(v,l));
+                        }
+                    }
+                }
+            }
+            
+        }
+        } catch (IOException e) {
+            System.err.format("Erro de E/S: %s%n", e);
+        }
+    }
+    
+
 
     // Listagem
     public void listarLivros() {
@@ -208,6 +245,13 @@ public class Database {
         for(Emprestimo e: emprestimos) {
             System.out.println();
             System.out.println(e.toString());
+        }
+    }
+
+    public void listarDevolucoes() {
+        for(Devolucao d: devolucoes) {
+            System.out.println();
+            System.out.println(d.toString());
         }
     }
 
