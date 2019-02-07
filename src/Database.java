@@ -20,8 +20,8 @@ public class Database {
         vizinhos = new ArrayList<>();
 
         carregarLivros();
-        carregarPessoas();
-        //carregarVizinhos();
+        carregarAutores();
+        carregarVizinhos();
     }
 
     public static Database getInstance() {
@@ -51,7 +51,7 @@ public class Database {
         }
     }
 
-    public void carregarPessoas() {
+    public void carregarAutores() {
         Path path = Paths.get("Autores.txt");
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
         String linha = null;
@@ -69,5 +69,23 @@ public class Database {
             System.err.format("Erro de E/S: %s%n", e);
         }
     }
-     
+    
+    public void carregarVizinhos() {
+        Path path = Paths.get("Vizinhos.txt");
+        try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
+        String linha = null;
+        while ((linha = br.readLine()) != null) {
+            // separador: ;
+            Scanner sc = new Scanner(linha).useDelimiter(";");
+
+            // Atributos do Vizinho
+            int codigo = Integer.parseInt(sc.next());
+            String nome = sc.next();
+            // Cria o objeto Vizinho e adiciona na lista
+            vizinhos.add(new Vizinho(codigo, nome));
+        }
+        } catch (IOException e) {
+            System.err.format("Erro de E/S: %s%n", e);
+        }
+    }
 }
