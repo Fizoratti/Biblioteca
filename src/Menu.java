@@ -166,13 +166,41 @@ public class Menu {
     public void showMenuDoacao() {
         System.out.println("--------------------------");
         System.out.println("MENU DOAÇÃO");
-        System.out.println("0 - Voltar");
-        System.out.print("\n$ Digite a opção: ");
 
+        System.out.println("Insira o código do vizinho");
         Scanner ler = new Scanner(System.in);
         int opc = ler.nextInt();
+        Vizinho vizinho = null;
+        for(Vizinho v: Database.getInstance().getVizinhos()) {
+            if(v.getCodigo() == opc) vizinho = v;
+        }
+
+        System.out.println("Insira o código do livro");
+        opc = ler.nextInt();
+        Livro livro = null;
+        for(Livro l: Database.getInstance().getLivros()) {
+            if(l.getCodigo() == opc) livro = l;
+        }
+
+        Doacao doacao = new Doacao(vizinho, livro);
+        System.out.println("--------------------------");
+        System.out.println("MENU DOAÇÃO\n");
+        System.out.println(doacao.toString() + "\n");
+        System.out.println("1 - Sim");
+        System.out.println("0 - Não");
+        System.out.print("$ Confirma doação?: ");
+        opc = ler.nextInt();
 
         switch(opc) {
+            case 1:
+                Database.getInstance().registrarDevolucao(devolucao);
+                System.out.println("\nDoação registrada!\n");
+                // Wait 2 seconds;
+                try{ 
+                    Thread.sleep(2000); 
+                } catch(Exception e) {
+                    Thread.currentThread().interrupt();
+                }
             case 0:
                 showMenu();
                 break;
