@@ -7,6 +7,11 @@ public class Emprestimo {
     private Livro livro;
     private String data;
     
+    public Emprestimo(Vizinho vizinho, Livro livro, String data) {
+        setVizinho(vizinho);
+        setLivro(livro);
+        setData(data);
+    }
     public Emprestimo(Vizinho vizinho, Livro livro) {
         setVizinho(vizinho);
         setLivro(livro);
@@ -27,6 +32,9 @@ public class Emprestimo {
     }
     public String getData() {
         return this.data;
+    }
+    public void setData(String data) {
+        this.data = data;
     }
 
     @Override
