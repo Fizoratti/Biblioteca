@@ -36,6 +36,16 @@ public class Database {
         getInstance();
     }
 
+    public ArrayList<Livro> getLivros() {
+        return this.livros;
+    }
+    public ArrayList<Autor> getAutores() {
+        return this.autores;
+    }
+    public ArrayList<Vizinho> getVizinhos() {
+        return this.vizinhos;
+    }
+
     // Métodos para carregar os dados principais
     public void carregarLivros() {
         Path path = Paths.get("Livros.txt");
