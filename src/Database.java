@@ -14,6 +14,7 @@ public class Database {
 
     private ArrayList<Emprestimo> emprestimos;
     private ArrayList<Devolucao> devolucoes;
+    private ArrayList<Doacao> doacoes;
 
     private static Database INSTANCE = new Database();
 
@@ -24,6 +25,7 @@ public class Database {
 
         emprestimos = new ArrayList<>();
         devolucoes = new ArrayList<>();
+        doacoes = new ArrayList<>();
 
         carregarLivros();
         carregarAutores();
@@ -32,7 +34,7 @@ public class Database {
         carregarLivrosAutores();
         carregarEmprestimos();
         carregarDevolucoes();
-        // carregarDoacoes();
+        carregarDoacoes();
     }
 
     public static Database getInstance() {
@@ -57,7 +59,9 @@ public class Database {
     public ArrayList<Devolucao> getDevolucoes() {
         return this.devolucoes;
     }
-
+    public ArrayList<Doacao> getDoacoes() {
+        return this.doacoes;
+    }
     // Métodos para carregar os dados principais
     public void carregarLivros() {
         Path path = Paths.get("Livros.txt");
@@ -214,6 +218,36 @@ public class Database {
             System.err.format("Erro de E/S: %s%n", e);
         }
     }
+
+    public void carregarDoacoes() {
+        Path path = Paths.get("Doacoes.txt");
+        try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
+            String linha = br.readLine();
+            while ((linha = br.readLine()) != null) {
+                // separador: ;
+                Scanner sc = new Scanner(linha).useDelimiter(";");
+
+                // Dados do empréstimo
+                int codigoVizinho = Integer.parseInt(sc.next());
+                int codigoLivro = Integer.parseInt(sc.next());
+
+                // Procura o vizinho com o mesmo codigo lido
+                for(Vizinho v: vizinhos) {
+                    if(v.getCodigo() == codigoVizinho) {
+                        // Procura o livro com o codigo lido
+                        for(Livro l: livros) {
+                            if(l.getCodigo() == codigoLivro) {
+                                // Cria o objeto empréstimo e adiciona na lista
+                                doacoes.add(new Doacao(v,l));
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.format("Erro de E/S: %s%n", e);
+        }
+    }
     
 
 
@@ -252,5 +286,11 @@ public class Database {
             System.out.println(d.toString());
         }
     }
-
+    
+    public void listarDoacoes() {
+        for(Doacao d: doacoes) {
+            System.out.println();
+            System.out.println(d.toString());
+        }
+    }
 }
