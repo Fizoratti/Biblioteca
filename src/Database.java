@@ -314,4 +314,36 @@ public class Database {
             System.err.format("Erro de E/S: %S%n", e);
         }
     }
+
+    public void registrarDevolucao(Devolucao devolucao) {
+        devolucoes.add(devolucao);
+        Path path = Paths.get("Devolucoes.txt");
+        try(PrintWriter writer = new PrintWriter(
+            Files.newBufferedWriter(path, Charset.defaultCharset()))) {
+            writer.println("Vizinho;Livro;Data");
+            for(Devolucao d: devolucoes) {
+                writer.println(d.getVizinho().getCodigo() + ";" +
+                                d.getLivro().getCodigo() + ";" +
+                                d.getData());
+            }
+        } catch (IOException e) {
+            System.err.format("Erro de E/S: %S%n", e);
+        }
+    }
+
+    public void registrarDoacao(Doacao doacao) {
+        doacoes.add(doacao);
+        Path path = Paths.get("Doacoes.txt");
+        try(PrintWriter writer = new PrintWriter(
+            Files.newBufferedWriter(path, Charset.defaultCharset()))) {
+            writer.println("Vizinho;Livro;Data");
+            for(Doacao d: doacoes) {
+                writer.println(d.getVizinho().getCodigo() + ";" +
+                                d.getLivro().getCodigo() + ";" +
+                                d.getData());
+            }
+        } catch (IOException e) {
+            System.err.format("Erro de E/S: %S%n", e);
+        }
+    }
 }
