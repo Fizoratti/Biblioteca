@@ -117,5 +117,7 @@ public class Menu {
         System.out.println("--------------------------");
         System.out.println("LISTA DE LIVROS");
         Database.getInstance().listarLivros();
+        System.out.println("\nFim!");
+        showMenu();
     }
 }

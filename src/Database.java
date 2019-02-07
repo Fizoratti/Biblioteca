@@ -101,6 +101,7 @@ public class Database {
     // Listagem
     public void listarLivros() {
         for(Livro l: livros) {
+            System.out.println();
             System.out.println(l.toString());
         }
     }
