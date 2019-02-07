@@ -23,6 +23,7 @@ public class Menu {
         System.out.println("6 - Listar Vizinhos");
 
         System.out.println("7 - Listar Empréstimos");
+        System.out.println("8 - Listar Devoluções");
 
         System.out.println("0 - Sair");
         System.out.print("\n$ Digite a opção: ");
@@ -51,6 +52,9 @@ public class Menu {
                 break;
             case 7:
                 showListaEmprestimos();
+                break;
+            case 8:
+                showListaDevolucoes();
                 break;
             case 0:
                 System.out.println("\nVolte logo!");
@@ -146,6 +150,14 @@ public class Menu {
         System.out.println("--------------------------");
         System.out.println("LISTA DE EMPRESTIMOS");
         Database.getInstance().listarEmprestimos();
+        System.out.println("\nFim!");
+        showMenu();
+    }
+
+    public void showListaDevolucoes() {
+        System.out.println("--------------------------");
+        System.out.println("LISTA DE DEVOLUÇÕES");
+        Database.getInstance().listarDevolucoes();
         System.out.println("\nFim!");
         showMenu();
     }
