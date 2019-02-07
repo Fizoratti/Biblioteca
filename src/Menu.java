@@ -72,13 +72,41 @@ public class Menu {
     public void showMenuEmprestimo() {
         System.out.println("--------------------------");
         System.out.println("MENU EMPRÉSTIMO");
-        System.out.println("0 - Voltar");
-        System.out.print("\n$ Digite a opção: ");
 
+        System.out.println("Insira o código do vizinho");
         Scanner ler = new Scanner(System.in);
         int opc = ler.nextInt();
+        Vizinho vizinho = null;
+        for(Vizinho v: Database.getInstance().getVizinhos()) {
+            if(v.getCodigo() == opc) vizinho = v;
+        }
+
+        System.out.println("Insira o código do livro");
+        opc = ler.nextInt();
+        Livro livro = null;
+        for(Livro l: Database.getInstance().getLivros()) {
+            if(l.getCodigo() == opc) livro = l;
+        }
+
+        Emprestimo emprestimo = new Emprestimo(vizinho, livro);
+        System.out.println("--------------------------");
+        System.out.println("MENU EMPRÉSTIMO\n");
+        System.out.println(emprestimo.toString() + "\n");
+        System.out.println("1 - Sim");
+        System.out.println("0 - Não");
+        System.out.print("$ Confirma empréstimo?: ");
+        opc = ler.nextInt();
 
         switch(opc) {
+            case 1:
+                Database.getInstance().registrarEmprestimo(emprestimo);
+                System.out.println("\nEmpréstimo registrado!\n");
+                // Wait 2 seconds;
+                try{ 
+                    Thread.sleep(2000); 
+                } catch(Exception e) {
+                    Thread.currentThread().interrupt();
+                }
             case 0:
                 showMenu();
                 break;
@@ -89,22 +117,7 @@ public class Menu {
     }
 
     public void showMenuDevolucao() {
-        System.out.println("--------------------------");
-        System.out.println("MENU DEVOLUÇÃO");
-        System.out.println("0 - Voltar");
-        System.out.print("\n$ Digite a opção: ");
-
-        Scanner ler = new Scanner(System.in);
-        int opc = ler.nextInt();
-
-        switch(opc) {
-            case 0:
-                showMenu();
-                break;
-            default:
-                showMenuDevolucao();
-                break;
-        }
+        
     }
 
     public void showMenuDoacao() {
