@@ -226,6 +226,12 @@ public class Menu {
         System.out.println("LISTA DE LIVROS");
         Database.getInstance().listarLivros();
         System.out.println("\nFim!");
+        // Wait 2 seconds;
+        try{ 
+            Thread.sleep(2000); 
+        } catch(Exception e) {
+            Thread.currentThread().interrupt();
+        }
         showMenu();
     }
 
@@ -234,6 +240,12 @@ public class Menu {
         System.out.println("LISTA DE AUTORES");
         Database.getInstance().listarAutores();
         System.out.println("\nFim!");
+        // Wait 2 seconds;
+        try{ 
+            Thread.sleep(2000); 
+        } catch(Exception e) {
+            Thread.currentThread().interrupt();
+        }
         showMenu();
     }
 
@@ -242,6 +254,12 @@ public class Menu {
         System.out.println("LISTA DE VIZINHOS");
         Database.getInstance().listarVizinhos();
         System.out.println("\nFim!");
+        // Wait 2 seconds;
+        try{ 
+            Thread.sleep(2000); 
+        } catch(Exception e) {
+            Thread.currentThread().interrupt();
+        }
         showMenu();
     }
 
@@ -250,6 +268,12 @@ public class Menu {
         System.out.println("LISTA DE EMPRESTIMOS");
         Database.getInstance().listarEmprestimos();
         System.out.println("\nFim!");
+        // Wait 2 seconds;
+        try{ 
+            Thread.sleep(2000); 
+        } catch(Exception e) {
+            Thread.currentThread().interrupt();
+        }
         showMenu();
     }
 
@@ -258,6 +282,12 @@ public class Menu {
         System.out.println("LISTA DE DEVOLUÇÕES");
         Database.getInstance().listarDevolucoes();
         System.out.println("\nFim!");
+        // Wait 2 seconds;
+        try{ 
+            Thread.sleep(2000); 
+        } catch(Exception e) {
+            Thread.currentThread().interrupt();
+        }
         showMenu();
     }
 
@@ -266,6 +296,12 @@ public class Menu {
         System.out.println("LISTA DE DOAÇÕES");
         Database.getInstance().listarDoacoes();
         System.out.println("\nFim!");
+        // Wait 2 seconds;
+        try{ 
+            Thread.sleep(2000); 
+        } catch(Exception e) {
+            Thread.currentThread().interrupt();
+        }
         showMenu();
     }
 }
