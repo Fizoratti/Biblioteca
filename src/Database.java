@@ -22,6 +22,11 @@ public class Database {
         carregarLivros();
         carregarAutores();
         carregarVizinhos();
+
+        // carregarLivrosAutores();
+        // carregarEmprestimos();
+        // carregarDevolucoes();
+        // carregarDoacoes();
     }
 
     public static Database getInstance() {
@@ -88,4 +93,16 @@ public class Database {
             System.err.format("Erro de E/S: %s%n", e);
         }
     }
+
+
+
+
+
+    // Listagem
+    public void listarLivros() {
+        for(Livro l: livros) {
+            System.out.println(l.toString());
+        }
+    }
+
 }

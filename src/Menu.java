@@ -17,6 +17,11 @@ public class Menu {
         System.out.println("1 - Registrar Empréstimo");
         System.out.println("2 - Registrar Devolução");
         System.out.println("3 - Registrar Doação");
+
+        System.out.println("4 - Listar Livros");
+        System.out.println("5 - Listar Autores");
+        System.out.println("6 - Listar Vizinhos");
+
         System.out.println("0 - Sair");
         System.out.print("\n$ Digite a opção: ");
 
@@ -32,6 +37,15 @@ public class Menu {
                 break;
             case 3:
                 showMenuDoacao();
+                break;
+            case 4:
+                showListaLivros();
+                break;
+            case 5:
+                //showListaAutores();
+                break;
+            case 6:
+                //showListaVizinhos();
                 break;
             case 0:
                 System.out.println("\nVolte logo!");
@@ -97,5 +111,11 @@ public class Menu {
                 showMenuDoacao();
                 break;
         }
+    }
+
+    public void showListaLivros() {
+        System.out.println("--------------------------");
+        System.out.println("LISTA DE LIVROS");
+        Database.getInstance().listarLivros();
     }
 }
