@@ -106,4 +106,18 @@ public class Database {
         }
     }
 
+    public void listarAutores() {
+        for(Livro l: livros) {
+            System.out.println();
+            System.out.println(l.toString());
+        }
+    }
+
+    public void listarVizinhos() {
+        for(Livro l: livros) {
+            System.out.println();
+            System.out.println(l.toString());
+        }
+    }
+
 }
