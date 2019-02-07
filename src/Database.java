@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class Database {
     private ArrayList<Livro> livros;
-    private ArrayList<Pessoa> autores;
-    private ArrayList<Pessoa> vizinhos;
+    private ArrayList<Autor> autores;
+    private ArrayList<Vizinho> vizinhos;
 
     private static Database INSTANCE = new Database();
 
@@ -23,7 +23,7 @@ public class Database {
         carregarAutores();
         carregarVizinhos();
 
-        // carregarLivrosAutores();
+        carregarLivrosAutores();
         // carregarEmprestimos();
         // carregarDevolucoes();
         // carregarDoacoes();
@@ -36,6 +36,7 @@ public class Database {
         getInstance();
     }
 
+    // Métodos para carregar os dados principais
     public void carregarLivros() {
         Path path = Paths.get("Livros.txt");
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
@@ -96,6 +97,39 @@ public class Database {
 
 
 
+    //Métodos para carregar os dados de ligação
+    public void carregarLivrosAutores() {
+        Path path = Paths.get("Livros_Autores.txt");
+        try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
+        String linha = null;
+        while ((linha = br.readLine()) != null) {
+            // separador: ;
+            Scanner sc = new Scanner(linha).useDelimiter(";");
+
+            // Atributos do Livro
+            int codigoLivro = Integer.parseInt(sc.next());
+            int codigoAutor = Integer.parseInt(sc.next());
+            // Procura o livro com o codigo lido
+            for(Livro l: livros) {
+                if(l.getCodigo() == codigoLivro) {
+                    // Procura o autor com o codigo lido
+                    for(Autor a: autores) {
+                        if(a.getCodigo() == codigoAutor) {
+                            // Atribui o autor encontrado ao livro encontrado
+                            l.setAutor((Autor) a);
+                            // Atribui o livro encontrado ao autor encontrado
+                            a.addLivro(l);
+                        }
+                    }
+                }
+            }
+            
+        }
+        } catch (IOException e) {
+            System.err.format("Erro de E/S: %s%n", e);
+        }
+    }
+
 
 
     // Listagem
@@ -107,14 +141,14 @@ public class Database {
     }
 
     public void listarAutores() {
-        for(Pessoa a: autores) {
+        for(Autor a: autores) {
             System.out.println();
             System.out.println(a.toString());
         }
     }
 
     public void listarVizinhos() {
-        for(Pessoa v: vizinhos) {
+        for(Vizinho v: vizinhos) {
             System.out.println();
             System.out.println(v.toString());
         }

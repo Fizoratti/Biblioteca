@@ -7,6 +7,7 @@ public class Autor extends Pessoa {
     public Autor(int cod, String nome) {
         super(nome);
         setCodigo(cod);
+        livros = new ArrayList<>();
     }
 
     public ArrayList getLivros() {
@@ -22,6 +23,7 @@ public class Autor extends Pessoa {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
 
     @Override
     public String toString() {
