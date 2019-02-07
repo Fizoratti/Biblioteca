@@ -167,22 +167,31 @@ public class Menu {
         System.out.println("--------------------------");
         System.out.println("MENU DOAÇÃO");
 
-        System.out.println("Insira o código do vizinho");
-        Scanner ler = new Scanner(System.in);
-        int opc = ler.nextInt();
         Vizinho vizinho = null;
+        System.out.print("$ Insira o código do vizinho: ");
+        Scanner ler = new Scanner(System.in);
+        int opc = Integer.parseInt(ler.nextLine());
         for(Vizinho v: Database.getInstance().getVizinhos()) {
             if(v.getCodigo() == opc) vizinho = v;
         }
 
-        System.out.println("Insira o código do livro");
-        opc = ler.nextInt();
         Livro livro = null;
-        for(Livro l: Database.getInstance().getLivros()) {
-            if(l.getCodigo() == opc) livro = l;
-        }
+        int codigoLivro = Database.getInstance().getLivros().size()+1;
+        System.out.print("$ Insira o título do livro: ");
+        String titulo = ler.nextLine();
 
+        Autor autor = null;
+        int codigoAutor = Database.getInstance().getAutores().size()+1;
+        System.out.print("$ Insira o nome do autor (entre aspas): ");
+        String nome = ler.nextLine();
+
+        System.out.print("$ Insira o ano de publicação: ");
+        int ano = Integer.parseInt(ler.nextLine());
+
+        livro = new Livro(codigoLivro, titulo, ano);
+        autor = new Autor(codigoAutor, nome);
         Doacao doacao = new Doacao(vizinho, livro);
+
         System.out.println("--------------------------");
         System.out.println("MENU DOAÇÃO\n");
         System.out.println(doacao.toString() + "\n");
@@ -193,7 +202,9 @@ public class Menu {
 
         switch(opc) {
             case 1:
-                Database.getInstance().registrarDevolucao(devolucao);
+                Database.getInstance().getLivros().add(livro);
+                Database.getInstance().getAutores().add(autor);
+                Database.getInstance().registrarDoacao(doacao);
                 System.out.println("\nDoação registrada!\n");
                 // Wait 2 seconds;
                 try{ 
