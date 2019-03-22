@@ -63,6 +63,7 @@ public class Database {
     public ArrayList<Doacao> getDoacoes() {
         return this.doacoes;
     }
+    
     // Métodos para carregar os dados principais
     public void carregarLivros() {
         Path path = Paths.get("Livros.txt");
@@ -124,8 +125,6 @@ public class Database {
             System.err.format("Erro de E/S: %s%n", e);
         }
     }
-
-
 
     //Métodos para carregar os dados de ligação
     public void carregarLivrosAutores() {
