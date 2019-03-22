@@ -2,4 +2,7 @@
 Sistema de uma Biblioteca desenvolvido na linguagem java utilizado para retirar, devolver e inserir livros.
 Ambiente de desenvolvimento Linux utilizando a IDE Visual Studio Code.
 ### Makefile
-Usar o script makefile para auxiliar no desenvolvimento e compilação do código.
+Usar o script makefile para auxiliar no desenvolvimento e compilação do código. O comando make run compila e executa o código.
+```
+$ make -s run
+```
